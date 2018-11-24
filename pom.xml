@@ -6,7 +6,7 @@
     <groupId>org.hut</groupId>
     <artifactId>hut-wh-dubbo</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>hut-wh-dubbo</name>
     <description>Demo project for Spring Boot and Dubbo MiscroService</description>

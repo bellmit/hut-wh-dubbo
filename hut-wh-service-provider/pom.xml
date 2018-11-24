@@ -6,7 +6,7 @@
     <groupId>org.hut</groupId>
     <artifactId>hut-wh-service-provider</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
     <name>hut-wh-service-provider</name>
     <description>暴露服务的服务提供方</description>

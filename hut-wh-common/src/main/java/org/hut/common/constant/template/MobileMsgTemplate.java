@@ -1,0 +1,49 @@
+package org.hut.common.constant.template;
+
+import lombok.Data;
+
+import java.io.Serializable;
+
+/**
+ * Created by hutwanghui on 2018/11/24 16:27.
+ * email:zjjhwanhui@163.com
+ * qq:472860892
+ * desc: 短信模板
+ */
+
+@Data
+public class MobileMsgTemplate implements Serializable {
+    /**
+     * 手机号
+     */
+    private String mobile;
+    /**
+     * 组装后的模板内容JSON字符串
+     */
+    private String context;
+    /**
+     * 短信通道
+     */
+    private String channel;
+    /**
+     * 短信类型(验证码或者通知短信)
+     * 暂时不用，留着后面存数据库备用吧
+     */
+    private String type;
+    /**
+     * 短信签名
+     */
+    private String signName;
+    /**
+     * 短信模板
+     */
+    private String template;
+
+    public MobileMsgTemplate(String mobile, String context, String channel, String signName, String template) {
+        this.mobile = mobile;
+        this.context = context;
+        this.channel = channel;
+        this.signName = signName;
+        this.template = template;
+    }
+}

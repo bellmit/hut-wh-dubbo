@@ -59,12 +59,6 @@
             <artifactId>hut-wh-open-api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.alibaba.boot</groupId>
-            <artifactId>dubbo-spring-boot-actuator</artifactId>
-        </dependency>
-
     </dependencies>
 
     <build>
