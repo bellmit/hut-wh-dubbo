@@ -3,7 +3,7 @@
 <mapper namespace="org.hut.user.mapper.SysDeptRelationMapper">
 
 	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="org.hut.user.entity.SysDeptRelation">
+	<resultMap id="BaseResultMap" type="org.hut.common.entity.SysDeptRelation">
 		<id column="ancestor" property="ancestor" />
 		<result column="descendant" property="descendant" />
 	</resultMap>

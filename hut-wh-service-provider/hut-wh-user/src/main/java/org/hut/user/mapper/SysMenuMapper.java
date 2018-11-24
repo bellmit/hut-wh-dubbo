@@ -5,7 +5,7 @@ package org.hut.user.mapper;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
 import org.hut.common.vo.MenuVO;
-import org.hut.user.entity.SysMenu;
+import org.hut.common.entity.SysMenu;
 
 import java.util.List;
 

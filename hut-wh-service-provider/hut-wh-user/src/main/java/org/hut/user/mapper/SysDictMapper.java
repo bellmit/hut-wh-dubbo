@@ -2,7 +2,7 @@
 package org.hut.user.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import org.hut.user.entity.SysDict;
+import org.hut.common.entity.SysDict;
 
 /**
  * Created by hutwanghui on 2018/11/24 13:54.

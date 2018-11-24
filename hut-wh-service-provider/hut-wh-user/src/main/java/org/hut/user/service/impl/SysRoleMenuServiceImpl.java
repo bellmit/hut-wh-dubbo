@@ -4,8 +4,8 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.hut.user.mapper.SysRoleMenuMapper;
-import org.hut.user.entity.SysRoleMenu;
-import org.hut.user.service.SysRoleMenuService;
+import org.hut.common.entity.SysRoleMenu;
+import org.hut.openapi.user.service.SysRoleMenuService;
 import org.springframework.cache.annotation.CacheEvict;
 
 import java.util.ArrayList;

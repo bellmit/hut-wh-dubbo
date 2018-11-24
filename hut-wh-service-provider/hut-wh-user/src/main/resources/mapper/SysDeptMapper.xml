@@ -3,7 +3,7 @@
 <mapper namespace="org.hut.user.mapper.SysDeptMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="org.hut.user.entity.SysDept">
+    <resultMap id="BaseResultMap" type="org.hut.common.entity.SysDept">
         <id column="dept_id" property="deptId"/>
         <result column="name" property="name"/>
         <result column="order_num" property="orderNum"/>
@@ -18,7 +18,7 @@
     </sql>
 
     <!--关联查询部门列表-->
-    <select id="selectDeptDtoList" resultType="org.hut.user.entity.SysDept">
+    <select id="selectDeptDtoList" resultType="org.hut.common.entity.SysDept">
 		SELECT
 			t.*
 		FROM

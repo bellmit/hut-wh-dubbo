@@ -23,4 +23,8 @@ public interface CommonConstant {
      * 阿里大鱼
      */
     String ALIYUN_SMS = "aliyun_sms";
+    /**
+     * 删除标记
+     */
+    String DEL_FLAG = "del_flag";
 }

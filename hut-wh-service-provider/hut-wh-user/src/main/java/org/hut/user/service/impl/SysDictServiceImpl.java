@@ -3,8 +3,8 @@ package org.hut.user.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.hut.user.mapper.SysDictMapper;
-import org.hut.user.entity.SysDict;
-import org.hut.user.service.SysDictService;
+import org.hut.common.entity.SysDict;
+import org.hut.openapi.user.service.SysDictService;
 
 /**
  * Created by hutwanghui on 2018/11/24 15:42.

@@ -4,7 +4,7 @@ package org.hut.user.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Param;
-import org.hut.user.entity.SysUserRole;
+import org.hut.common.entity.SysUserRole;
 
 /**
  * Created by hutwanghui on 2018/11/24 14:24.

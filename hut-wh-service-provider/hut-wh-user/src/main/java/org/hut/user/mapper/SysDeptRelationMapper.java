@@ -1,6 +1,6 @@
 package org.hut.user.mapper;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import org.hut.user.entity.SysDeptRelation;
+import org.hut.common.entity.SysDeptRelation;
 /**
  * Created by hutwanghui on 2018/11/24 14:12.
  * email:zjjhwanhui@163.com

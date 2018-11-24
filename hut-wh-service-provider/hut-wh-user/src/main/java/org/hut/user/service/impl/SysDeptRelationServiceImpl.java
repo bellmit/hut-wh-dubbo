@@ -3,8 +3,8 @@ package org.hut.user.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.hut.user.mapper.SysDeptRelationMapper;
-import org.hut.user.entity.SysDeptRelation;
-import org.hut.user.service.SysDeptRelationService;
+import org.hut.common.entity.SysDeptRelation;
+import org.hut.openapi.user.service.SysDeptRelationService;
 
 /**
  * Created by hutwanghui on 2018/11/24 15:41.

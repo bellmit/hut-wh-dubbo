@@ -3,7 +3,7 @@
 <mapper namespace="org.hut.user.mapper.SysRoleMenuMapper">
 
 	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="org.hut.user.entity.SysRoleMenu">
+	<resultMap id="BaseResultMap" type="org.hut.common.entity.SysRoleMenu">
 		<id column="role_id" property="roleId" />
 		<result column="menu_id" property="menuId" />
 	</resultMap>

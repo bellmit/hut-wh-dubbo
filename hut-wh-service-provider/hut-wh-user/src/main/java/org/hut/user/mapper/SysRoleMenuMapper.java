@@ -1,6 +1,6 @@
 package org.hut.user.mapper;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import org.hut.user.entity.SysRoleMenu;
+import org.hut.common.entity.SysRoleMenu;
 
 /**
  * Created by hutwanghui on 2018/11/24 14:25.

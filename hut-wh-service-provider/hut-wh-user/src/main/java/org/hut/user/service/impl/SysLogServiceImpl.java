@@ -5,7 +5,7 @@ package org.hut.user.service.impl;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import org.hut.user.mapper.SysLogMapper;
-import org.hut.user.service.SysLogService;
+import org.hut.openapi.user.service.SysLogService;
 import org.hut.common.constant.CommonConstant;
 import org.hut.common.entity.SysLog;
 import org.hut.common.entity.Assert;

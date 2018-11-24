@@ -3,7 +3,7 @@
 <mapper namespace="org.hut.user.mapper.SysRoleDeptMapper">
 
 	<!-- 通用查询映射结果 -->
-	<resultMap id="BaseResultMap" type="org.hut.user.entity.SysRoleDept">
+	<resultMap id="BaseResultMap" type="org.hut.common.entity.SysRoleDept">
 		<id column="id" property="id" />
 		<result column="role_id" property="roleId" />
 		<result column="dept_id" property="deptId" />

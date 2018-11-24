@@ -2,7 +2,7 @@
 package org.hut.user.mapper;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.hut.common.entity.Query;
-import org.hut.user.entity.SysRole;
+import org.hut.common.entity.SysRole;
 
 import java.util.List;
 import java.util.Map;

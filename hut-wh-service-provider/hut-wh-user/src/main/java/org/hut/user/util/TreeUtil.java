@@ -1,8 +1,7 @@
 
 package org.hut.user.util;
-import org.hut.user.dto.MenuTree;
-import org.hut.user.dto.TreeNode;
-import org.hut.user.entity.SysMenu;
+import org.hut.common.entity.MenuTree;
+import org.hut.common.entity.SysMenu;
 
 import java.util.ArrayList;
 import java.util.List;

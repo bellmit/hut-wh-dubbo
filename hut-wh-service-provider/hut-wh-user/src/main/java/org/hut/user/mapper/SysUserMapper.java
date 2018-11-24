@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import org.hut.common.entity.Query;
 import org.hut.common.utils.DataScope;
 import org.hut.common.vo.UserVO;
-import org.hut.user.entity.SysUser;
+import org.hut.common.entity.SysUser;
 
 import java.util.List;
 

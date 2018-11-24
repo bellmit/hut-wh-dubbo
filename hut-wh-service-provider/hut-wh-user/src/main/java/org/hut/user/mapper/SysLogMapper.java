@@ -3,7 +3,6 @@ package org.hut.user.mapper;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import org.hut.common.entity.SysLog;
-import org.hut.user.entity.SysDict;
 
 
 /**

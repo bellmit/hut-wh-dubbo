@@ -3,7 +3,7 @@
 <mapper namespace="org.hut.user.mapper.SysOauthClientDetailsMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="org.hut.user.entity.SysOauthClientDetails">
+    <resultMap id="BaseResultMap" type="org.hut.common.entity.SysOauthClientDetails">
         <id column="client_id" property="clientId" />
         <result column="resource_ids" property="resourceIds" />
         <result column="client_secret" property="clientSecret" />
