@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.DbType;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
+import com.baomidou.mybatisplus.toolkit.StringUtils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -95,14 +96,14 @@ public class MyGenerator {
             viewDir.mkdirs();
         }
         //使用自定义的模板生成前端页面
-        // List<FileOutConfig> focList = new ArrayList<FileOutConfig>();
-        // focList.add(new FileOutConfig("/templates/listvue.vue.vm") {
-        // @Override
-        // public String outputFile(TableInfo tableInfo) {
-        //    return getGeneratorViewPath(viewOutputDir, tableInfo, ".vue");
-        //  }
-        //  });
-        // cfg.setFileOutConfigList(focList);
+        List<FileOutConfig> focList = new ArrayList<FileOutConfig>();
+        focList.add(new FileOutConfig("/templates/complexTable.vue.vm") {
+            @Override
+            public String outputFile(TableInfo tableInfo) {
+                return getGeneratorViewPath(viewOutputDir, tableInfo, ".vue");
+            }
+        });
+        cfg.setFileOutConfigList(focList);
         mpg.setCfg(cfg);
         // 自定义模板配置，可以 copy 源码 mybatis-plus/src/main/resources/templates 下面内容修改，
         // 放置自己项目的 src/main/resources/templates 目录下, 默认名称一下可以不配置，也可以自定义模板名称
@@ -117,5 +118,18 @@ public class MyGenerator {
         // mpg.setTemplate(tc);
         //执行
         mpg.execute();
+    }
+
+    /**
+     * 页面生成的文件名
+     */
+    private static String getGeneratorViewPath(String viewOutputDir, TableInfo tableInfo, String suffixPath) {
+        String name = StringUtils.firstToLowerCase(tableInfo.getEntityName());
+        String path = viewOutputDir + "/" + name + "/index" + suffixPath;
+        File viewDir = new File(path).getParentFile();
+        if (!viewDir.exists()) {
+            viewDir.mkdirs();
+        }
+        return path;
     }
 }
