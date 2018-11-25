@@ -25,6 +25,7 @@
         <mybatis-plus.version>2.1.9</mybatis-plus.version>
         <mybatisplus-spring-boot-starter.version>1.0.5</mybatisplus-spring-boot-starter.version>
         <hibernate-validator.version>5.4.1.Final</hibernate-validator.version>
+        <fastjson.version>1.2.8</fastjson.version>
     </properties>
 
     <dependencies>
@@ -59,6 +60,16 @@
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate-validator.version}</version>
         </dependency>
-        <!--hutTool集成-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+        <!--huttool工具-->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>4.0.12</version>
+        </dependency>
     </dependencies>
 </project>

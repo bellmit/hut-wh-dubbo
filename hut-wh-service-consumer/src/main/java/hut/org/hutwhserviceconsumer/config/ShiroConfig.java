@@ -1,10 +1,8 @@
-package org.hut.user.config;
+package hut.org.hutwhserviceconsumer.config;
 
 import lombok.extern.java.Log;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
-import org.apache.shiro.realm.Realm;
-import org.apache.shiro.session.mgt.DefaultSessionManager;
 import org.apache.shiro.session.mgt.SessionManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -50,10 +48,11 @@ public class ShiroConfig {
         //先配置退出的过滤器，其中具体的代码已经由Shiro实现
         filterChainDefinitionMap.put("/logout", "logout");
         //配置不会被拦截的链接，顺序判断
-        filterChainDefinitionMap.put("/static/**", "anno");
-        filterChainDefinitionMap.put("/ajaxlogin", "anno");
+        filterChainDefinitionMap.put("/static/**", "anon");
+        filterChainDefinitionMap.put("/sysUser", "anon");
+        filterChainDefinitionMap.put("/ajaxLogin", "anon");
         //配置会被拦截的链接
-        filterChainDefinitionMap.put("/**", "anthc");
+        filterChainDefinitionMap.put("/**", "authc");
         //配置shiro默认登录界面地址，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
         shiroFilterFactoryBean.setLoginUrl("/login");
         // 登录成功后要跳转的链接
@@ -87,6 +86,7 @@ public class ShiroConfig {
     /**
      * 配置凭证匹配器，用于校验交给shiro的SimpleAuthenticationInfo
      * 实现MD5(MD5)的加密
+     * 由于我们的密码校验交给Shiro的SimpleAuthenticationInfo进行处理了
      *
      * @return
      */

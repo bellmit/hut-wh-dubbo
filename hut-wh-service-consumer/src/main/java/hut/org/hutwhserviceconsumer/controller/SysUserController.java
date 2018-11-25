@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Date;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.hut.common.entity.SysUser;
 import org.hut.openapi.user.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,8 @@ public class SysUserController {
      */
     @PostMapping
     public R<Boolean> add(@RequestBody SysUser sysUser) {
+        sysUser.setPassword(new Md5Hash(new Md5Hash(sysUser.getPassword(), sysUser.getUsername())).toString());
+        sysUser.setSalt(sysUser.getUsername());
         return new R<>(sysUserService.insert(sysUser));
     }
 

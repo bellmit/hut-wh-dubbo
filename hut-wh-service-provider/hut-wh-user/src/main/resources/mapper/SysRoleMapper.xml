@@ -14,7 +14,7 @@
 	</resultMap>
 
 	<!--roleDto-->
-	<resultMap id="RoleDtoMap" type="org.hut.common.dto.RoleDTO">
+	<resultMap id="RoleDtoMap" type="org.hut.common.entity.RoleDTO">
 		<id column="role_id" property="roleId" />
 		<result column="role_name" property="roleName" />
 		<result column="role_code" property="roleCode" />

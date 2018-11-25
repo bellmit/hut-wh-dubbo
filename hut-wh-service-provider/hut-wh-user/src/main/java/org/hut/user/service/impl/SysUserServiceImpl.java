@@ -10,6 +10,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.apache.shiro.crypto.hash.Md5Hash;
 import org.hut.user.mapper.SysUserMapper;
 import org.hut.common.entity.UserDTO;
 import org.hut.common.entity.UserInfo;
@@ -225,7 +226,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
      * @return Boolean
      */
     @Override
-    @CacheEvict(value = "user_details", key = "#sysUser.username")
+//    @CacheEvict(value = "user_details", key = "#sysUser.username")
     public Boolean deleteUserById(SysUser sysUser) {
         sysUserRoleService.deleteByUserId(sysUser.getUserId());
         this.deleteById(sysUser.getUserId());
@@ -233,34 +234,29 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     }
 
     @Override
-    @CacheEvict(value = "user_details", key = "#username")
-    public R<Boolean> updateUserInfo(UserDTO userDto, String username) {
-        UserVO userVo = this.findUserByUsername(username);
-        SysUser sysUser = new SysUser();
-        if (StrUtil.isNotBlank(userDto.getPassword())
-                && StrUtil.isNotBlank(userDto.getNewpassword1())) {
-            if (SecureUtil.md5(SecureUtil.md5(userDto.getPassword())).equals(userVo.getPassword())) {
-                sysUser.setPassword(SecureUtil.md5(SecureUtil.md5(userDto.getNewpassword1())));
-            } else {
-                log.warn("原密码错误，修改密码失败:{}", username);
-                return new R<>(Boolean.FALSE, "原密码错误，修改失败");
-            }
+//    @CacheEvict(value = "user_details", key = "#username")
+    public R<Boolean> updateUserInfo(UserDTO userDto, String oldpassword, String password) {
+        UserVO userVo = this.findUserByUsername(userDto.getUsername());
+        if (oldpassword.equals(userVo.getPassword())) {
+            SysUser sysUser = new SysUser();
+            sysUser.setPassword(password);
+            sysUser.setPhone(userDto.getPhone());
+            sysUser.setUserId(userVo.getUserId());
+            sysUser.setAvatar(userDto.getAvatar());
+            return new R<>(this.updateById(sysUser));
+        } else {
+            return null;
         }
-        sysUser.setPhone(userDto.getPhone());
-        sysUser.setUserId(userVo.getUserId());
-        sysUser.setAvatar(userDto.getAvatar());
-        return new R<>(this.updateById(sysUser));
     }
 
 
     @Override
-    @CacheEvict(value = "user_details", key = "#username")
+//    @CacheEvict(value = "user_details", key = "#username")
     public Boolean updateUser(UserDTO userDto, String username) {
         SysUser sysUser = new SysUser();
         BeanUtils.copyProperties(userDto, sysUser);
         sysUser.setUpdateTime(new Date());
         this.updateById(sysUser);
-
         SysUserRole condition = new SysUserRole();
         condition.setUserId(userDto.getUserId());
         sysUserRoleService.delete(new EntityWrapper<>(condition));

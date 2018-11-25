@@ -7,10 +7,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-/**
- * @author lengleng
- * @date 2017/10/29
- */
 @Data
 public class UserVO implements Serializable {
     private static final long serialVersionUID = 1L;

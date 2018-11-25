@@ -1,4 +1,4 @@
-package org.hut.user.config;
+package hut.org.hutwhserviceconsumer.config;
 
 import org.apache.shiro.web.servlet.ShiroHttpServletRequest;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;

@@ -2,6 +2,7 @@
 package org.hut.user.util;
 import org.hut.common.entity.MenuTree;
 import org.hut.common.entity.SysMenu;
+import org.hut.common.entity.TreeNode;
 
 import java.util.ArrayList;
 import java.util.List;
