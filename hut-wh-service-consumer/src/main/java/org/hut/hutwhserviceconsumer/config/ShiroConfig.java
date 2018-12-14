@@ -1,4 +1,4 @@
-package hut.org.hutwhserviceconsumer.config;
+package org.hut.hutwhserviceconsumer.config;
 
 import lombok.extern.java.Log;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;

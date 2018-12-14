@@ -1,4 +1,4 @@
-package hut.org.hutwhserviceconsumer.controller;
+package org.hut.hutwhserviceconsumer.controller;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;

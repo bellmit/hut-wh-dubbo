@@ -1,4 +1,4 @@
-package hut.org.hutwhserviceconsumer.config;
+package org.hut.hutwhserviceconsumer.config;
 
 import com.rabbitmq.client.AMQP;
 import org.springframework.amqp.core.Queue;

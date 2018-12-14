@@ -1,4 +1,4 @@
-package hut.org.hutwhserviceconsumer;
+package org.hut.hutwhserviceconsumer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

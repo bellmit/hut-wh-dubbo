@@ -1,4 +1,4 @@
-package hut.org.hutwhserviceconsumer.controller;
+package org.hut.hutwhserviceconsumer.controller;
 
 import java.util.Map;
 import java.util.Date;

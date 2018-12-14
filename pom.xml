@@ -22,6 +22,7 @@
         <module>hut-wh-common</module>
         <module>hut-wh-monitor</module>
         <module>hut-wh-registry</module>
+        <module>hut-wh-open-api</module>
         <module>hut-wh-service-consumer</module>
         <module>hut-wh-service-provider</module>
     </modules>
@@ -69,15 +70,6 @@
             </snapshots>
         </repository>
     </repositories>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
 
 
 </project>

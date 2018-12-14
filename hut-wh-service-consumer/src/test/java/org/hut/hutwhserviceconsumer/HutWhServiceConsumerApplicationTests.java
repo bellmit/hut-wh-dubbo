@@ -1,4 +1,4 @@
-package hut.org.hutwhserviceconsumer;
+package org.hut.hutwhserviceconsumer;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

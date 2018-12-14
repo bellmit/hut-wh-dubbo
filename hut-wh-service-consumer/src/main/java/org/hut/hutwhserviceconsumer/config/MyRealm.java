@@ -1,4 +1,4 @@
-package hut.org.hutwhserviceconsumer.config;
+package org.hut.hutwhserviceconsumer.config;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;

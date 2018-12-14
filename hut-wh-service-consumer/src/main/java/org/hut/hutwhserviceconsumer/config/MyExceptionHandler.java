@@ -1,4 +1,4 @@
-package hut.org.hutwhserviceconsumer.config;
+package org.hut.hutwhserviceconsumer.config;
 
 import com.alibaba.fastjson.support.spring.FastJsonJsonView;
 import org.apache.shiro.authz.UnauthenticatedException;

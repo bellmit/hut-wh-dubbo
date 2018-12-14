@@ -1,12 +1,11 @@
-package hut.org.hutwhserviceconsumer.controller;
+package org.hut.hutwhserviceconsumer.controller;
 
 import java.util.Map;
 import java.util.Date;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import org.apache.shiro.crypto.hash.Md5Hash;
-import org.hut.common.entity.SysUser;
-import org.hut.openapi.user.service.SysUserService;
+import org.hut.common.entity.SysMenu;
+import org.hut.openapi.user.service.SysMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.hut.common.constant.CommonConstant;
@@ -15,32 +14,33 @@ import com.baomidou.mybatisplus.plugins.Page;
 import org.hut.common.entity.Query;
 import org.hut.common.entity.R;
 
+
 /**
- * 用户表 前端控制器
+ * 菜单权限表 前端控制器
  *
  * @author hutwanghui
  * @since 2018-11-24
  */
 @RestController
-@RequestMapping("/sysUser")
-public class SysUserController {
+@RequestMapping("/sysMenu")
+public class SysMenuController {
     @Reference(
             version = "1.0.0",
             group = "sys",
             application = "${dubbo.application.id}",
             registry = "${dubbo.registry.id}"
     )
-    private SysUserService sysUserService;
+    private SysMenuService sysMenuService;
 
     /**
      * 通过ID查询
      *
      * @param id ID
-     * @return SysUser
+     * @return SysMenu
      */
     @GetMapping("/{id}")
-    public R<SysUser> get(@PathVariable Integer id) {
-        return new R<>(sysUserService.selectById(id));
+    public R<SysMenu> get(@PathVariable Integer id) {
+        return new R<>(sysMenuService.selectById(id));
     }
 
 
@@ -53,20 +53,18 @@ public class SysUserController {
     @RequestMapping("/page")
     public Page page(@RequestParam Map<String, Object> params) {
         params.put(CommonConstant.DEL_FLAG, CommonConstant.STATUS_NORMAL);
-        return sysUserService.selectPage(new Query<>(params), new EntityWrapper<>());
+        return sysMenuService.selectPage(new Query<>(params), new EntityWrapper<>());
     }
 
     /**
      * 添加
      *
-     * @param sysUser 实体
+     * @param sysMenu 实体
      * @return success/false
      */
     @PostMapping
-    public R<Boolean> add(@RequestBody SysUser sysUser) {
-        sysUser.setPassword(new Md5Hash(new Md5Hash(sysUser.getPassword(), sysUser.getUsername())).toString());
-        sysUser.setSalt(sysUser.getUsername());
-        return new R<>(sysUserService.insert(sysUser));
+    public R<Boolean> add(@RequestBody SysMenu sysMenu) {
+        return new R<>(sysMenuService.insert(sysMenu));
     }
 
     /**
@@ -77,17 +75,18 @@ public class SysUserController {
      */
     @DeleteMapping("/{id}")
     public R<Boolean> delete(@PathVariable Integer id) {
-        return new R<>(sysUserService.deleteById(id));
+        return new R<>(sysMenuService.deleteById(id));
     }
 
     /**
      * 编辑
      *
-     * @param sysUser 实体
+     * @param sysMenu 实体
      * @return success/false
      */
     @PutMapping
-    public R<Boolean> edit(@RequestBody SysUser sysUser) {
-        return new R<>(sysUserService.updateById(sysUser));
+    public R<Boolean> edit(@RequestBody SysMenu sysMenu) {
+        sysMenu.setUpdateTime(new Date());
+        return new R<>(sysMenuService.updateById(sysMenu));
     }
 }

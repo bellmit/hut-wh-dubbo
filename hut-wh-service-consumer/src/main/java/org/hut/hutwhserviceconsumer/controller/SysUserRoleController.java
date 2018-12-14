@@ -1,11 +1,11 @@
-package hut.org.hutwhserviceconsumer.controller;
+package org.hut.hutwhserviceconsumer.controller;
 
 import java.util.Map;
 import java.util.Date;
 
 import com.alibaba.dubbo.config.annotation.Reference;
-import org.hut.common.entity.SysMenu;
-import org.hut.openapi.user.service.SysMenuService;
+import org.hut.common.entity.SysUserRole;
+import org.hut.openapi.user.service.SysUserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.hut.common.constant.CommonConstant;
@@ -16,31 +16,31 @@ import org.hut.common.entity.R;
 
 
 /**
- * 菜单权限表 前端控制器
+ * 用户角色表 前端控制器
  *
  * @author hutwanghui
  * @since 2018-11-24
  */
 @RestController
-@RequestMapping("/sysMenu")
-public class SysMenuController {
+@RequestMapping("/sysUserRole")
+public class SysUserRoleController {
     @Reference(
             version = "1.0.0",
             group = "sys",
             application = "${dubbo.application.id}",
             registry = "${dubbo.registry.id}"
     )
-    private SysMenuService sysMenuService;
+    private SysUserRoleService sysUserRoleService;
 
     /**
      * 通过ID查询
      *
      * @param id ID
-     * @return SysMenu
+     * @return SysUserRole
      */
     @GetMapping("/{id}")
-    public R<SysMenu> get(@PathVariable Integer id) {
-        return new R<>(sysMenuService.selectById(id));
+    public R<SysUserRole> get(@PathVariable Integer id) {
+        return new R<>(sysUserRoleService.selectById(id));
     }
 
 
@@ -53,18 +53,18 @@ public class SysMenuController {
     @RequestMapping("/page")
     public Page page(@RequestParam Map<String, Object> params) {
         params.put(CommonConstant.DEL_FLAG, CommonConstant.STATUS_NORMAL);
-        return sysMenuService.selectPage(new Query<>(params), new EntityWrapper<>());
+        return sysUserRoleService.selectPage(new Query<>(params), new EntityWrapper<>());
     }
 
     /**
      * 添加
      *
-     * @param sysMenu 实体
+     * @param sysUserRole 实体
      * @return success/false
      */
     @PostMapping
-    public R<Boolean> add(@RequestBody SysMenu sysMenu) {
-        return new R<>(sysMenuService.insert(sysMenu));
+    public R<Boolean> add(@RequestBody SysUserRole sysUserRole) {
+        return new R<>(sysUserRoleService.insert(sysUserRole));
     }
 
     /**
@@ -75,18 +75,17 @@ public class SysMenuController {
      */
     @DeleteMapping("/{id}")
     public R<Boolean> delete(@PathVariable Integer id) {
-        return new R<>(sysMenuService.deleteById(id));
+        return new R<>(sysUserRoleService.deleteById(id));
     }
 
     /**
      * 编辑
      *
-     * @param sysMenu 实体
+     * @param sysUserRole 实体
      * @return success/false
      */
     @PutMapping
-    public R<Boolean> edit(@RequestBody SysMenu sysMenu) {
-        sysMenu.setUpdateTime(new Date());
-        return new R<>(sysMenuService.updateById(sysMenu));
+    public R<Boolean> edit(@RequestBody SysUserRole sysUserRole) {
+        return new R<>(sysUserRoleService.updateById(sysUserRole));
     }
 }

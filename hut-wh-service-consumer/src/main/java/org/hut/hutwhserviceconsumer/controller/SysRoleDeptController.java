@@ -1,45 +1,46 @@
-package hut.org.hutwhserviceconsumer.controller;
+package org.hut.hutwhserviceconsumer.controller;
+
+import java.util.Map;
+import java.util.Date;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import org.hut.common.entity.SysRoleDept;
+import org.hut.openapi.user.service.SysRoleDeptService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.hut.common.constant.CommonConstant;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import org.hut.common.constant.CommonConstant;
 import org.hut.common.entity.Query;
 import org.hut.common.entity.R;
-import org.hut.common.entity.SysRole;
-import org.hut.openapi.user.service.SysRoleService;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
-import java.util.Map;
 
 
 /**
- * 前端控制器
+ * 角色与部门对应关系 前端控制器
  *
  * @author hutwanghui
  * @since 2018-11-24
  */
 @RestController
-@RequestMapping("/sysRole")
-public class SysRoleController {
+@RequestMapping("/sysRoleDept")
+public class SysRoleDeptController {
     @Reference(
             version = "1.0.0",
             group = "sys",
             application = "${dubbo.application.id}",
             registry = "${dubbo.registry.id}"
     )
-    private SysRoleService sysRoleService;
+    private SysRoleDeptService sysRoleDeptService;
 
     /**
      * 通过ID查询
      *
      * @param id ID
-     * @return SysRole
+     * @return SysRoleDept
      */
     @GetMapping("/{id}")
-    public R<SysRole> get(@PathVariable Integer id) {
-        return new R<>(sysRoleService.selectById(id));
+    public R<SysRoleDept> get(@PathVariable Integer id) {
+        return new R<>(sysRoleDeptService.selectById(id));
     }
 
 
@@ -52,18 +53,18 @@ public class SysRoleController {
     @RequestMapping("/page")
     public Page page(@RequestParam Map<String, Object> params) {
         params.put(CommonConstant.DEL_FLAG, CommonConstant.STATUS_NORMAL);
-        return sysRoleService.selectPage(new Query<>(params), new EntityWrapper<>());
+        return sysRoleDeptService.selectPage(new Query<>(params), new EntityWrapper<>());
     }
 
     /**
      * 添加
      *
-     * @param sysRole 实体
+     * @param sysRoleDept 实体
      * @return success/false
      */
     @PostMapping
-    public R<Boolean> add(@RequestBody SysRole sysRole) {
-        return new R<>(sysRoleService.insert(sysRole));
+    public R<Boolean> add(@RequestBody SysRoleDept sysRoleDept) {
+        return new R<>(sysRoleDeptService.insert(sysRoleDept));
     }
 
     /**
@@ -74,18 +75,17 @@ public class SysRoleController {
      */
     @DeleteMapping("/{id}")
     public R<Boolean> delete(@PathVariable Integer id) {
-        return new R<>(sysRoleService.deleteById(id));
+        return new R<>(sysRoleDeptService.deleteById(id));
     }
 
     /**
      * 编辑
      *
-     * @param sysRole 实体
+     * @param sysRoleDept 实体
      * @return success/false
      */
     @PutMapping
-    public R<Boolean> edit(@RequestBody SysRole sysRole) {
-        sysRole.setUpdateTime(new Date());
-        return new R<>(sysRoleService.updateById(sysRole));
+    public R<Boolean> edit(@RequestBody SysRoleDept sysRoleDept) {
+        return new R<>(sysRoleDeptService.updateById(sysRoleDept));
     }
 }
