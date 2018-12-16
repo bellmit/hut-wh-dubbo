@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hut.product.mapper.MemberPriceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.hut.common.entity.pms.MemberPrice">
+        <id column="id" property="id" />
+        <result column="product_id" property="productId" />
+        <result column="member_level_id" property="memberLevelId" />
+        <result column="member_price" property="memberPrice" />
+        <result column="member_level_name" property="memberLevelName" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, product_id AS productId, member_level_id AS memberLevelId, member_price AS memberPrice, member_level_name AS memberLevelName
+    </sql>
+
+</mapper>

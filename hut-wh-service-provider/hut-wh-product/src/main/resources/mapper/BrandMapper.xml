@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hut.product.mapper.BrandMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.hut.common.entity.pms.Brand">
+        <id column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="first_letter" property="firstLetter" />
+        <result column="sort" property="sort" />
+        <result column="factory_status" property="factoryStatus" />
+        <result column="show_status" property="showStatus" />
+        <result column="product_count" property="productCount" />
+        <result column="product_comment_count" property="productCommentCount" />
+        <result column="logo" property="logo" />
+        <result column="big_pic" property="bigPic" />
+        <result column="brand_story" property="brandStory" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, name, first_letter AS firstLetter, sort, factory_status AS factoryStatus, show_status AS showStatus, product_count AS productCount, product_comment_count AS productCommentCount, logo, big_pic AS bigPic, brand_story AS brandStory
+    </sql>
+
+</mapper>
