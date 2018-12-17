@@ -56,6 +56,7 @@ public class MyGenerator {
         // strategy.setCapitalMode(true);// 全局大写命名 ORACLE 注意
         // strategy.setSuperControllerClass("org.hut.common.web.BaseController");
         // 表名生成策略
+        strategy.setTablePrefix("pms");
         strategy.setNaming(NamingStrategy.underline_to_camel);
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 自定义实体父类

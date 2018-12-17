@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.hut.product.mapper.SkuStockMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="org.hut.common.entity.pms.SkuStock">
+        <id column="id" property="id"/>
+        <result column="product_id" property="productId"/>
+        <result column="sku_code" property="skuCode"/>
+        <result column="price" property="price"/>
+        <result column="stock" property="stock"/>
+        <result column="low_stock" property="lowStock"/>
+        <result column="sp1" property="sp1"/>
+        <result column="sp2" property="sp2"/>
+        <result column="sp3" property="sp3"/>
+        <result column="pic" property="pic"/>
+        <result column="sale" property="sale"/>
+        <result column="promotion_price" property="promotionPrice"/>
+        <result column="lock_stock" property="lockStock"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, product_id AS productId, sku_code AS skuCode, price, stock, low_stock AS lowStock, sp1, sp2, sp3, pic, sale, promotion_price AS promotionPrice, lock_stock AS lockStock
+    </sql>
+    <insert id="insertList">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into pms_sku_stock
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="productId != null">
+                product_id,
+            </if>
+            <if test="skuCode != null">
+                sku_code,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="stock != null">
+                stock,
+            </if>
+            <if test="lowStock != null">
+                low_stock,
+            </if>
+            <if test="sp1 != null">
+                sp1,
+            </if>
+            <if test="sp2 != null">
+                sp2,
+            </if>
+            <if test="sp3 != null">
+                sp3,
+            </if>
+            <if test="pic != null">
+                pic,
+            </if>
+            <if test="sale != null">
+                sale,
+            </if>
+            <if test="promotionPrice != null">
+                promotion_price,
+            </if>
+            <if test="lockStock != null">
+                lock_stock,
+            </if>
+        </trim>
+        <foreach collection="list" separator="," item="item" index="index">
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+
+                <if test="productId != null">
+                    #{productId,jdbcType=BIGINT},
+                </if>
+                <if test="skuCode != null">
+                    #{skuCode,jdbcType=VARCHAR},
+                </if>
+                <if test="price != null">
+                    #{price,jdbcType=DECIMAL},
+                </if>
+                <if test="stock != null">
+                    #{stock,jdbcType=INTEGER},
+                </if>
+                <if test="lowStock != null">
+                    #{lowStock,jdbcType=INTEGER},
+                </if>
+                <if test="sp1 != null">
+                    #{sp1,jdbcType=VARCHAR},
+                </if>
+                <if test="sp2 != null">
+                    #{sp2,jdbcType=VARCHAR},
+                </if>
+                <if test="sp3 != null">
+                    #{sp3,jdbcType=VARCHAR},
+                </if>
+                <if test="pic != null">
+                    #{pic,jdbcType=VARCHAR},
+                </if>
+                <if test="sale != null">
+                    #{sale,jdbcType=INTEGER},
+                </if>
+                <if test="promotionPrice != null">
+                    #{promotionPrice,jdbcType=DECIMAL},
+                </if>
+                <if test="lockStock != null">
+                    #{lockStock,jdbcType=INTEGER},
+                </if>
+            </trim>
+        </foreach>
+    </insert>
+</mapper>

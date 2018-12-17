@@ -20,7 +20,7 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
         protocol = "${dubbo.protocol.id}",
         registry = "${dubbo.registry.id}",
         version = "1.0.0",
-        group = "sys"
+        group = "pms"
 )
 public class AlbumServiceImpl extends ServiceImpl<AlbumMapper, Album> implements IAlbumService {
 

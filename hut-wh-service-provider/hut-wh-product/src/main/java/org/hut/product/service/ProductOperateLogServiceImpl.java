@@ -19,7 +19,7 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
         protocol = "${dubbo.protocol.id}",
         registry = "${dubbo.registry.id}",
         version = "1.0.0",
-        group = "sys"
+        group = "pms"
 )
 public class ProductOperateLogServiceImpl extends ServiceImpl<ProductOperateLogMapper, ProductOperateLog> implements IProductOperateLogService {
 

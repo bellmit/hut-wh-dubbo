@@ -1,7 +1,10 @@
 package org.hut.product.mapper;
 
+import org.apache.ibatis.annotations.Param;
 import org.hut.common.entity.pms.ProductCategoryAttributeRelation;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +15,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @since 2018-12-16
  */
 public interface ProductCategoryAttributeRelationMapper extends BaseMapper<ProductCategoryAttributeRelation> {
+    int insertList(@Param("list") List<ProductCategoryAttributeRelation> productCategoryAttributeRelationList);
 
+    int updateList(@Param("list") List<ProductCategoryAttributeRelation> relationList);
 }
+

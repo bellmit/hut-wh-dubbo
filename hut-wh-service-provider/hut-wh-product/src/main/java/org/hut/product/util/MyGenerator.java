@@ -57,7 +57,7 @@ public class MyGenerator {
         // strategy.setSuperControllerClass("org.hut.common.web.BaseController");
         // 表名生成策略
         strategy.setNaming(NamingStrategy.underline_to_camel);
-        strategy.setTablePrefix("pms_");
+        strategy.setTablePrefix("cms");
         // strategy.setExclude(new String[]{"test"}); // 排除生成的表
         // 自定义实体父类
         // strategy.setSuperEntityClass("com.baomidou.demo.TestEntity");

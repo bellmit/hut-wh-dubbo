@@ -4,23 +4,53 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="org.hut.common.entity.pms.ProductCategory">
-        <id column="id" property="id" />
-        <result column="parent_id" property="parentId" />
-        <result column="name" property="name" />
-        <result column="level" property="level" />
-        <result column="product_count" property="productCount" />
-        <result column="product_unit" property="productUnit" />
-        <result column="nav_status" property="navStatus" />
-        <result column="show_status" property="showStatus" />
-        <result column="sort" property="sort" />
-        <result column="icon" property="icon" />
-        <result column="keywords" property="keywords" />
-        <result column="description" property="description" />
+        <id column="id" property="id"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="name" property="name"/>
+        <result column="level" property="level"/>
+        <result column="product_count" property="productCount"/>
+        <result column="product_unit" property="productUnit"/>
+        <result column="nav_status" property="navStatus"/>
+        <result column="show_status" property="showStatus"/>
+        <result column="sort" property="sort"/>
+        <result column="icon" property="icon"/>
+        <result column="keywords" property="keywords"/>
+        <result column="description" property="description"/>
     </resultMap>
-
+    <resultMap id="listWithChildrenMap" type="org.hut.common.entity.pms.ProductCategoryWithChildrenItem"
+               extends="org.hut.product.mapper.ProductCategoryMapper.BaseResultMap">
+        <collection property="children" resultMap="org.hut.product.mapper.ProductCategoryMapper.BaseResultMap"
+                    columnPrefix="child_"></collection>
+    </resultMap>
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, parent_id AS parentId, name, level, product_count AS productCount, product_unit AS productUnit, nav_status AS navStatus, show_status AS showStatus, sort, icon, keywords, description
     </sql>
+    <select id="listWithChildren" resultMap="listWithChildrenMap">
+        select
+            c1.id,
+            c1.name,
+            c2.id   child_id,
+            c2.name child_name
+        from pms_product_category c1 left join pms_product_category c2 on c1.id = c2.parent_id
+        where c1.parent_id = 0
+    </select>
 
+    <insert id="insertList">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into pms_product_category (parent_id, name, level,
+        product_count, product_unit, nav_status,
+        show_status, sort, icon,
+        keywords, description)
+        values
+        <foreach collection="list" separator="," item="item" index="index">
+            ``(#{parentId,jdbcType=BIGINT},
+            #{name,jdbcType=VARCHAR}, #{level,jdbcType=INTEGER},
+            #{productCount,jdbcType=INTEGER}, #{productUnit,jdbcType=VARCHAR}, #{navStatus,jdbcType=INTEGER},
+            #{showStatus,jdbcType=INTEGER}, #{sort,jdbcType=INTEGER}, #{icon,jdbcType=VARCHAR},
+            #{keywords,jdbcType=VARCHAR}, #{description,jdbcType=LONGVARCHAR})
+        </foreach>
+    </insert>
 </mapper>

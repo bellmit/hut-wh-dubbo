@@ -15,5 +15,15 @@
     <sql id="Base_Column_List">
         id, product_id AS productId, member_level_id AS memberLevelId, member_price AS memberPrice, member_level_name AS memberLevelName
     </sql>
-
+    <insert id="insertList">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into pms_member_price (product_id, member_level_id, member_price,
+        member_level_name)
+        <foreach collection="list" separator="," item="item" index="index">
+        values (#{productId,jdbcType=BIGINT}, #{memberLevelId,jdbcType=BIGINT}, #{memberPrice,jdbcType=DECIMAL},
+        #{memberLevelName,jdbcType=VARCHAR})
+        </foreach>
+    </insert>
 </mapper>

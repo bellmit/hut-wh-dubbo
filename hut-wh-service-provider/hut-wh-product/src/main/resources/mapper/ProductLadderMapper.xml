@@ -4,16 +4,27 @@
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="org.hut.common.entity.pms.ProductLadder">
-        <id column="id" property="id" />
-        <result column="product_id" property="productId" />
-        <result column="count" property="count" />
-        <result column="discount" property="discount" />
-        <result column="price" property="price" />
+        <id column="id" property="id"/>
+        <result column="product_id" property="productId"/>
+        <result column="count" property="count"/>
+        <result column="discount" property="discount"/>
+        <result column="price" property="price"/>
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
         id, product_id AS productId, count, discount, price
     </sql>
-
+    <insert id="insertList" parameterType="org.hut.common.entity.pms.ProductLadder">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into pms_product_ladder (product_id, count, discount,
+        price)
+        values
+        <foreach collection="list" separator="," item="item" index="index">(#{productId,jdbcType=BIGINT},
+            #{count,jdbcType=INTEGER}, #{discount,jdbcType=DECIMAL},
+            #{price,jdbcType=DECIMAL})
+        </foreach>
+    </insert>
 </mapper>

@@ -53,4 +53,10 @@
         id, brand_id AS brandId, product_category_id AS productCategoryId, feight_template_id AS feightTemplateId, product_attribute_category_id AS productAttributeCategoryId, name, pic, product_sn AS productSn, delete_status AS deleteStatus, publish_status AS publishStatus, new_status AS newStatus, recommand_status AS recommandStatus, verify_status AS verifyStatus, sort, sale, price, promotion_price AS promotionPrice, gift_growth AS giftGrowth, gift_point AS giftPoint, use_point_limit AS usePointLimit, sub_title AS subTitle, description, original_price AS originalPrice, stock, low_stock AS lowStock, unit, weight, preview_status AS previewStatus, service_ids AS serviceIds, keywords, note, album_pics AS albumPics, detail_title AS detailTitle, detail_desc AS detailDesc, detail_html AS detailHtml, detail_mobile_html AS detailMobileHtml, promotion_start_time AS promotionStartTime, promotion_end_time AS promotionEndTime, promotion_per_limit AS promotionPerLimit, promotion_type AS promotionType, brand_name AS brandName, product_category_name AS productCategoryName
     </sql>
 
+    <select id="selectByProductCategoryId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from pms_product
+        where product_category_id = #{pcid,jdbcType=BIGINT}
+    </select>
 </mapper>

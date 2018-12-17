@@ -1,7 +1,11 @@
 package org.hut.product.mapper;
 
+import org.apache.ibatis.annotations.Param;
+import org.hut.common.entity.pms.ProductCategory;
 import org.hut.common.entity.pms.ProductLadder;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+import java.util.List;
 
 /**
  * <p>
@@ -12,5 +16,5 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @since 2018-12-16
  */
 public interface ProductLadderMapper extends BaseMapper<ProductLadder> {
-
+    int insertList(@Param("list") List<ProductLadder> productLadderList);
 }

@@ -30,6 +30,7 @@
             <artifactId>hut-wh-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+
     </dependencies>
     <distributionManagement> <!-- 远程部署管理信息 -->
         <repository> <!--部署项目产生的构件到远程仓库需要的信息 -->
