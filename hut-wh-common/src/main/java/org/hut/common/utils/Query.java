@@ -25,9 +25,9 @@ public class Query<T> extends LinkedHashMap<String, Object> {
      */
     private int limit = 10;
 
+
     public Query(Map<String, Object> params){
         this.putAll(params);
-
         //分页参数
         if(params.get("page") != null){
             currPage = Integer.parseInt((String)params.get("page"));

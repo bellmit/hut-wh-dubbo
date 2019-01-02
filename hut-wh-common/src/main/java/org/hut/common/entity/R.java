@@ -97,7 +97,7 @@ public class R<T> extends HashMap<String, Object> implements Serializable {
         return r;
     }
     public static R ok() {
-        return new R();
+        return new R().put("code",SUCCESS);
     }
     public static R ok(Map<String, Object> map) {
         R r = new R();

@@ -1,6 +1,8 @@
 package org.hut.consumer.user.config;
 
 import lombok.extern.java.Log;
+import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
+import org.apache.shiro.mgt.DefaultSubjectDAO;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.session.mgt.SessionManager;
@@ -10,13 +12,16 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
 import org.crazycake.shiro.RedisSessionDAO;
+import org.hut.consumer.user.filter.JwtFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 
+import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
+
 
 /**
  * Created by hutwanghui on 2018/11/24.
@@ -40,26 +45,36 @@ public class ShiroConfig {
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         log.info("*******ShiroConfiguation.shiroFilter()进行过滤配置*******");
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
-        //配置session、realm等管理器
-        shiroFilterFactoryBean.setSecurityManager(securityManager);
-        //配置过滤器
-        Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
+
+        /**
+         * 若使用jwt拦截器，需要添加拦截器map
+         */
+        Map<String, Filter> filterChainDefinitionMap = new LinkedHashMap<>();
+        filterChainDefinitionMap.put("jwt", new JwtFilter());
+        shiroFilterFactoryBean.setFilters(filterChainDefinitionMap);
+        /**
+         * 自定义url规则
+         */
+        Map<String, String> filterURLnDefinitionMap = new LinkedHashMap<String, String>();
         //注意顺序，不可颠倒
         //先配置退出的过滤器，其中具体的代码已经由Shiro实现
-        filterChainDefinitionMap.put("/logout", "logout");
+        filterURLnDefinitionMap.put("/logout", "logout");
         //配置不会被拦截的链接，顺序判断
-        filterChainDefinitionMap.put("/static/**", "anon");
-        filterChainDefinitionMap.put("/sysUser", "anon");
-        filterChainDefinitionMap.put("/ajaxLogin", "anon");
+        filterURLnDefinitionMap.put("/static/**", "anon");
+        filterURLnDefinitionMap.put("/sysUser", "anon");
+        filterURLnDefinitionMap.put("/ajaxLogin", "anon");
         //配置会被拦截的链接
-        filterChainDefinitionMap.put("/**", "authc");
+//        filterURLnDefinitionMap.put("/**", "authc");
+        filterURLnDefinitionMap.put("/**", "jwt");
         //配置shiro默认登录界面地址，前后端分离中登录界面跳转应由前端路由控制，后台仅返回json数据
         shiroFilterFactoryBean.setLoginUrl("/login");
         // 登录成功后要跳转的链接
         shiroFilterFactoryBean.setSuccessUrl("/index");
         //未授权界面;
-        //shiroFilterFactoryBean.setUnauthorizedUrl("/403");
-        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
+        shiroFilterFactoryBean.setUnauthorizedUrl("/401");
+        //配置session、realm等管理器
+        shiroFilterFactoryBean.setSecurityManager(securityManager);
+        shiroFilterFactoryBean.setFilterChainDefinitionMap(filterURLnDefinitionMap);
         return shiroFilterFactoryBean;
     }
 
@@ -72,6 +87,15 @@ public class ShiroConfig {
         securityManager.setSessionManager(sessionManager());
         //使用自定义使用redis进行缓存
         securityManager.setCacheManager(cacheManager());
+        /**
+         * 如果需要使用jwt，需要关闭shiro自带的session
+         */
+        DefaultSubjectDAO subjectDAO = new DefaultSubjectDAO();
+        DefaultSessionStorageEvaluator defaultSessionStorageEvaluator = new DefaultSessionStorageEvaluator();
+        defaultSessionStorageEvaluator.setSessionStorageEnabled(false);
+        subjectDAO.setSessionStorageEvaluator(defaultSessionStorageEvaluator);
+        securityManager.setSubjectDAO(subjectDAO);
+
         return securityManager;
     }
 

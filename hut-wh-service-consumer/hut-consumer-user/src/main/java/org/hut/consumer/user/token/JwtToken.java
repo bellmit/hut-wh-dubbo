@@ -11,6 +11,9 @@ import org.apache.shiro.authc.AuthenticationToken;
  * Created by hutwanghui on 2018/11/25.
  * email:zjjhwanhui@163.com
  * qq:472860892
+ * 实现shiro校验载体的替换，只需要重新实现AuthenticationToken即可
+ * 因为token自己已经包含了用户名等信息
+ * 我们只需要在里面添加jwt字符串即可
  */
 @Data
 @AllArgsConstructor
