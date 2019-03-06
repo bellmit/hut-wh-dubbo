@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/hut-wh-service-consumer" />
+    <file type="web" url="file://$PROJECT_DIR$/hut-wh-service-provider/hut-wh-analysis" />
+    <file type="web" url="file://$PROJECT_DIR$/hut-wh-service-provider/hut-wh-order" />
+    <file type="web" url="file://$PROJECT_DIR$/hut-wh-service-provider/hut-wh-product" />
+    <file type="web" url="file://$PROJECT_DIR$/hut-wh-service-provider/hut-wh-user" />
+  </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="ES6" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/hut-wh-common/pom.xml" />
+        <option value="$PROJECT_DIR$/hut-wh-monitor/pom.xml" />
+        <option value="$PROJECT_DIR$/hut-wh-registry/pom.xml" />
+        <option value="$PROJECT_DIR$/hut-wh-service-provider/pom.xml" />
+        <option value="$PROJECT_DIR$/hut-wh-service-consumer/pom.xml" />
+        <option value="$PROJECT_DIR$/hut-wh-service-provider/hut-wh-user/pom.xml" />
+        <option value="$PROJECT_DIR$/hut-wh-service-provider/hut-wh-order/pom.xml" />
+        <option value="$PROJECT_DIR$/hut-wh-service-provider/hut-wh-analysis/pom.xml" />
+        <option value="$PROJECT_DIR$/hut-wh-service-provider/hut-wh-product/pom.xml" />
+        <option value="$PROJECT_DIR$/hut-wh-open-api/pom.xml" />
+        <option value="$PROJECT_DIR$/hut-wh-service-consumer/hut-consumer-product/pom.xml" />
+        <option value="$PROJECT_DIR$/hut-wh-service-consumer/hut-consumer-user/pom.xml" />
+        <option value="$PROJECT_DIR$/hut-wh-service-provider/hut-wh-flink-platform/pom.xml" />
+        <option value="$PROJECT_DIR$/hut-wh-service-provider/hut-wh-sso-server/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

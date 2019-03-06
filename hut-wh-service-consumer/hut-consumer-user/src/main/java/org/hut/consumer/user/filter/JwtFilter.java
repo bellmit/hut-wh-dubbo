@@ -82,6 +82,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
      */
     @Override
     protected boolean executeLogin(ServletRequest request, ServletResponse response) throws Exception {
+        log.info(">>>>>>>>>>>>登陆的验证逻辑>>>>>>>>>>>>");
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         String authorization = httpServletRequest.getHeader("Authorization");
         String host = httpServletRequest.getHeader("Host");
@@ -89,6 +90,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
         // 提交给realm进行登入，如果错误他会抛出异常并被捕获
         getSubject(request, response).login(token);
         // 如果没有抛出异常则代表登入成功，返回true
+        log.info("<<<<<<<<<<<<<登陆的验证逻辑<<<<<<<<<<<<<");
         return true;
     }
 

@@ -1,6 +1,7 @@
 package org.hut.consumer.user.token;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import lombok.extern.java.Log;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
@@ -27,6 +28,7 @@ import java.util.Set;
  * 基于JWT（ JSON WEB TOKEN）的认证域
  * 实现校验jwt字符串是否合法
  */
+@Log
 public class JwtRealm extends AuthorizingRealm {
 
     @Reference(
@@ -58,6 +60,7 @@ public class JwtRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
+        log.info("%%%%%%%%Shiro框架进行用户jwt【" + token.getCredentials().toString() + "】的身份认证******");
         JwtToken jwtToken = (JwtToken) token;
         String jwt = (String) token.getPrincipal();
         // 解密获得username，用于和数据库进行对比
@@ -74,7 +77,8 @@ public class JwtRealm extends AuthorizingRealm {
         if (!JWTUtil.verify(jwt, username, managerInfo.getPassword())) {
             throw new AuthenticationException("Username or password error");
         }
-        return new SimpleAuthenticationInfo(token, token, "my_realm");
+        //return new SimpleAuthenticationInfo(token, token, "my_realm");
+        return new SimpleAuthenticationInfo(token, token, "jwtRealm");
     }
 
 

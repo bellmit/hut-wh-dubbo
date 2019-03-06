@@ -43,6 +43,9 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
      */
     UserVO selectUserVoByMobile(String mobile);
 
+    // TODO 邮箱注册
+    // UserVO selectUserVoByEmail(String email);
+
     /**
      * 通过openId查询用户信息
      *

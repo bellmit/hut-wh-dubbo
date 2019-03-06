@@ -23,6 +23,7 @@
         <module>hut-wh-analysis</module>
         <module>hut-wh-order</module>
         <module>hut-wh-product</module>
+        <module>hut-wh-sso-server</module>
     </modules>
 
     <properties>

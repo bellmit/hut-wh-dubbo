@@ -37,14 +37,14 @@ public class FlinkWordCount implements FlatMapFunction<String, Tuple2<String, In
             port = parameterTool.getInt("port");
         }catch (Exception e){
             System.err.println("没有指定port参数，使用默认值9000");
-            port = 9000;
+            port = 1900;
         }
 
         //获取运行环境
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
         //连接socket获取输入的数据
-        DataStreamSource<String> text = env.socketTextStream("172.27.128.17", port, "\n");
+        DataStreamSource<String> text = env.socketTextStream("192.168.1.23", port, "\n");
 
         //计算数据
         DataStream<WordWithCount> windowCount = text.flatMap(new FlatMapFunction<String, WordWithCount>() {

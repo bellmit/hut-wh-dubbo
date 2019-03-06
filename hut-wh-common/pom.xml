@@ -114,6 +114,12 @@
             <artifactId>java-jwt</artifactId>
             <version>3.4.0</version>
         </dependency>
+        <!--easyExcel-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>easyexcel</artifactId>
+            <version>1.1.1</version>
+        </dependency>
     </dependencies>
     <distributionManagement> <!-- 远程部署管理信息 -->
         <repository> <!--部署项目产生的构件到远程仓库需要的信息 -->

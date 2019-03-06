@@ -13,6 +13,7 @@ import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
 import org.crazycake.shiro.RedisSessionDAO;
 import org.hut.consumer.user.filter.JwtFilter;
+import org.hut.consumer.user.token.JwtRealm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -58,11 +59,11 @@ public class ShiroConfig {
         Map<String, String> filterURLnDefinitionMap = new LinkedHashMap<String, String>();
         //注意顺序，不可颠倒
         //先配置退出的过滤器，其中具体的代码已经由Shiro实现
-        filterURLnDefinitionMap.put("/logout", "logout");
+        filterURLnDefinitionMap.put("/api/oauth/logout", "logout");
         //配置不会被拦截的链接，顺序判断
         filterURLnDefinitionMap.put("/static/**", "anon");
-        filterURLnDefinitionMap.put("/sysUser", "anon");
-        filterURLnDefinitionMap.put("/ajaxLogin", "anon");
+        filterURLnDefinitionMap.put("/api/oauth/sysUser", "anon");
+        filterURLnDefinitionMap.put("/api/oauth/ajaxLogin", "anon");
         //配置会被拦截的链接
 //        filterURLnDefinitionMap.put("/**", "authc");
         filterURLnDefinitionMap.put("/**", "jwt");
@@ -71,7 +72,7 @@ public class ShiroConfig {
         // 登录成功后要跳转的链接
         shiroFilterFactoryBean.setSuccessUrl("/index");
         //未授权界面;
-        shiroFilterFactoryBean.setUnauthorizedUrl("/401");
+        shiroFilterFactoryBean.setUnauthorizedUrl("/api/oauth/401");
         //配置session、realm等管理器
         shiroFilterFactoryBean.setSecurityManager(securityManager);
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterURLnDefinitionMap);
@@ -82,7 +83,8 @@ public class ShiroConfig {
     @Bean
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(myRealm());
+        //securityManager.setRealm(myRealm());
+        securityManager.setRealm(jwtRealm());
         //使用自定义使用redis进行sessionId管理
         securityManager.setSessionManager(sessionManager());
         //使用自定义使用redis进行缓存
@@ -99,6 +101,12 @@ public class ShiroConfig {
         return securityManager;
     }
 
+    @Bean
+    public JwtRealm jwtRealm() {
+        JwtRealm jwtRealm = new JwtRealm();
+        jwtRealm.setCredentialsMatcher(hashedCredentialsMatcher());
+        return jwtRealm;
+    }
 
     @Bean
     public MyRealm myRealm() {

@@ -25,6 +25,9 @@ public interface SysUserService extends IService<SysUser> {
      */
     UserVO findUserByUsername(String username);
 
+
+    Boolean regist(SysUser sysUser);
+
     /**
      * 分页查询用户信息（含有角色信息）
      *
@@ -61,8 +64,7 @@ public interface SysUserService extends IService<SysUser> {
     /**
      * 更新当前用户基本信息
      *
-     * @param userDto  用户信息
-     * @param username 用户名
+     * @param userDto 用户信息
      * @return Boolean
      */
     R<Boolean> updateUserInfo(UserDTO userDto, String oldpassword, String password);
@@ -83,6 +85,15 @@ public interface SysUserService extends IService<SysUser> {
      * @return 用户信息
      */
     UserVO findUserByMobile(String mobile);
+
+
+    /**
+     * 通过邮箱地址查询用户信息
+     *
+     * @param email
+     * @return
+     */
+    UserVO findUserByEmail(String email);
 
     /**
      * 发送验证码

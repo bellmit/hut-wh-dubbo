@@ -51,7 +51,16 @@ public class JWTUtil {
                 .withClaim("username", username)
                 .build();
         DecodedJWT jwt = verifier.verify(token);
-        return true;
+        log.info("!!!!!!!!!!!!!!!!!!解密前的Token【" + token + "】!!!!!!!!!!!!!!!!!!!");
+        log.info("!!!!!!!!!!!!!!!!!!解密后的Token【" + jwt.toString() + "】!!!!!!!!!!!!!!!!!!!");
+        if (jwt.getToken().equals(token)) {
+            log.info("用户【" + username + "】的token校验成功!!!");
+            return true;
+        } else {
+            log.info("用户【" + username + "】的token校验失败!!!");
+            return false;
+        }
+
     }
 
     /**

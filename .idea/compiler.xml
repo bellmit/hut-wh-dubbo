@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="hut-consumer-product" />
+        <module name="hut-consumer-user" />
+        <module name="hut-wh-analysis" />
+        <module name="hut-wh-common" />
+        <module name="hut-wh-flink-platform" />
+        <module name="hut-wh-monitor" />
+        <module name="hut-wh-open-api" />
+        <module name="hut-wh-order" />
+        <module name="hut-wh-product" />
+        <module name="hut-wh-registry" />
+        <module name="hut-wh-sso-server" />
+        <module name="hut-wh-user" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="hut-consumer-product" target="1.8" />
+      <module name="hut-consumer-user" target="1.8" />
+      <module name="hut-wh-analysis" target="1.8" />
+      <module name="hut-wh-common" target="1.8" />
+      <module name="hut-wh-dubbo" target="1.8" />
+      <module name="hut-wh-flink-platform" target="1.8" />
+      <module name="hut-wh-monitor" target="1.8" />
+      <module name="hut-wh-open-api" target="1.8" />
+      <module name="hut-wh-order" target="1.8" />
+      <module name="hut-wh-product" target="1.8" />
+      <module name="hut-wh-registry" target="1.8" />
+      <module name="hut-wh-service-consumer" target="1.8" />
+      <module name="hut-wh-service-provider" target="1.8" />
+      <module name="hut-wh-sso-server" target="1.8" />
+      <module name="hut-wh-user" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,6 +1,7 @@
 package org.hut.user.service.impl;
 
 import cn.hutool.core.collection.CollectionUtil;
+import cn.hutool.core.date.DateTime;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
@@ -117,6 +118,18 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         return sysUserMapper.selectUserVoByUsername(username);
     }
 
+    @Override
+    public Boolean regist(SysUser sysUser) {
+        sysUser.setPassword(new Md5Hash(new Md5Hash(sysUser.getPassword(), sysUser.getUsername())).toString());
+        sysUser.setSalt(sysUser.getUsername());
+        sysUser.setUpdateTime(DateTime.now());
+        if (sysUserMapper.insert(sysUser) > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     /**
      * 通过手机号查询用户信息
      *
@@ -127,6 +140,12 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Cacheable(value = "user_details_mobile", key = "#mobile")
     public UserVO findUserByMobile(String mobile) {
         return sysUserMapper.selectUserVoByMobile(mobile);
+    }
+
+    @Override
+
+    public UserVO findUserByEmail(String email) {
+        return null;
     }
 
     /**
